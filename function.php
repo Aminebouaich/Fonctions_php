@@ -61,39 +61,117 @@
 // print(checkNum($MyNumber));
 // exo 4
 
-$csvDepartement = array_map('str_getcsv', file('departement.csv'));
-$csvVille = array_map('str_getcsv', file('villes_france.csv'));
+// $csvDepartement = array_map('str_getcsv', file('departement.csv'));
+// $csvVille = array_map('str_getcsv', file('villes_france.csv'));
 
-$departNum = "93";
+// $departNum = "93";
 
-print_r(departName($departNum, $csvDepartement));
-function departName($departNum, $array){
-    foreach ($array as $key => $depart) {
-        if ($departNum == $depart[1]) 
-        {
-            $departFound = $depart[2];
-            return $departFound;
-        }
-    }
-    $departFound = "Département introuvable";
-    return $departFound;
-}
-
-
+// print_r(departName($departNum, $csvDepartement));
+// function departName($departNum, $array){
+//     foreach ($array as $key => $depart) {
+//         if ($departNum == $depart[1]) 
+//         {
+//             $departFound = $depart[2];
+//             return $departFound;
+//         }
+//     }
+//     $departFound = "Département introuvable";
+//     return $departFound;
+// }
 
 
-function villesDepart($departNum, $array){
+
+
+// function villesDepart($departNum, $array){
    
-    $departVilles = array() ;
-    foreach ($array as $key => $ville) {
-        if ($departNum == $ville[1]) {
-            array_push($departVilles,$ville[5]);
+//     $departVilles = array() ;
+//     foreach ($array as $key => $ville) {
+//         if ($departNum == $ville[1]) {
+//             array_push($departVilles,$ville[5]);
+//         }
+//     }
+//     if (count($departVilles) == 0) {
+//         return "Département introuvable";
+//     }
+//     return $departVilles;
+// }
+// // var_dump($csvVille);
+// var_dump(villesDepart( $departNum, $csvVille));
+// ex 6
+// $date='2022-07-29';
+// function weekDay($date){
+//     $weekDay = date("l", strtotime($date));
+//     $day = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+//     $dayFrench = array("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche");
+//     $frenchWeekDay = str_replace($day, $dayFrench, $weekDay);
+//     return $frenchWeekDay;
+// }
+// print(weekDay($date));
+//////////////////////
+// $fmt = new IntlDateFormatter("fr_FR" ,0,0,NULL,NULL,"EEEE");
+// echo(datefmt_format( $fmt , strtotime(Date('2022-07-26'))));
+
+// EXO 7
+
+// function parkingState($parkingName, $array){
+//     foreach ($array as $key => $parking) {
+//         if ($parkingName == $parking[0]) {
+//             return $parking[4];
+//         }
+//     }
+//     $noPark = "Parking introuvable";
+//     return $noPark;
+// }
+
+//////////////////////////////
+//  $csvParking = array_map(function($v){return str_getcsv($v, ";");}, file('occupation-parkings-temps-reel.csv'));
+//  $parkingName='Parking Zénith' ;
+
+// function parkingState($parkingName, $array){
+//     foreach ($array as $key => $parking) {
+//         if (isset($parking[4]) && $parking[4] === 'Ouvert' && $parkingName == $parking[0]) {
+//             return true;
+//         }
+//     }
+//     return false;
+    
+// }
+// print(parkingState($parkingName, $csvParking));
+// var_dump($csvParking);
+
+// EXO 8
+
+// function parkingPlaces($parkingName, $array){
+//     foreach ($array as $key => $parking) {
+//         if ($parkingName == $parking[0]) {
+//             return $parking[6];
+//         }
+//     }
+//     $noPark = "Parking introuvable";
+//     return $noPark;
+// }
+//     print(parkingPlaces($parkingName, $csvParking));
+    $gh=  require_once('tableau_datas.php');
+
+$ville='Edinburgh';
+
+  print(employesVilles($ville, $tableau));
+  function employesVilles($villeName, $array){
+
+    $nombreEmploye= array();
+
+    foreach($array as $employe){
+        if ($villeName == $employe[2]){
+            array_push($nombreEmploye, $employe[0]);
         }
+    
     }
-    if (count($departVilles) == 0) {
-        return "Département introuvable";
+    print_r($nombreEmploye);
+    if (count($nombreEmploye)==0){
+        return " introuvable";
     }
-    return $departVilles;
-}
-// var_dump($csvVille);
-var_dump(villesDepart( $departNum, $csvVille));
+    else {
+        return count($nombreEmploye);
+    }
+   
+  }
