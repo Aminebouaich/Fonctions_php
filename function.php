@@ -153,25 +153,45 @@
 //     print(parkingPlaces($parkingName, $csvParking));
     $gh=  require_once('tableau_datas.php');
 
-$ville='Edinburgh';
+// $ville='Edinburgh';
 
-  print(employesVilles($ville, $tableau));
-  function employesVilles($villeName, $array){
+// //   print(employesVilles($ville, $tableau));
+//   function employesVilles($villeName, $array){
 
-    $nombreEmploye= array();
+//     $nombreEmploye= array();
 
-    foreach($array as $employe){
-        if ($villeName == $employe[2]){
-            array_push($nombreEmploye, $employe[0]);
-        }
+//     foreach($array as $employe){
+//         if ($villeName == $employe[2]){
+//             array_push($nombreEmploye, $employe[0]);
+//         }
     
-    }
-    print_r($nombreEmploye);
-    if (count($nombreEmploye)==0){
-        return " introuvable";
-    }
-    else {
-        return count($nombreEmploye);
-    }
+//     }
+//     // print_r($nombreEmploye);
+//     if (count($nombreEmploye)==0){
+//         return " introuvable";
+//     }
+//     else {
+//         return count($nombreEmploye);
+//     }
    
-  }
+//   }
+
+
+//   exo 9
+
+function mostEmploye(){
+    include('tableau_datas.php');
+    $value = 0;
+    foreach ($tableau as $key => $employe) {
+        if ($value < substr(str_replace(",", "", $employe[5]), 1)) {
+            $value = substr(str_replace(",", "", $employe[5]), 1);
+            $name = $employe[5];
+        }
+    }
+    return $name;
+
+
+}
+
+print(mostEmploye());
+
